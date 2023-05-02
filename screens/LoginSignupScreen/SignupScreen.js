@@ -116,7 +116,7 @@ const SignupScreen = ({navigation}) => {
         </View>
         <TouchableOpacity style={btn1}>
             <Text 
-                style={{color: 'white', fontSize: 20, fontWeight: 'bold',}} onPress={() => {navigation.navigate('add')}}>    
+                style={{color: 'white', fontSize: 20, fontWeight: 'bold',}} onPress={() => {navigation.navigate('home')}}>    
                 Sign Up
             </Text>
         </TouchableOpacity>
