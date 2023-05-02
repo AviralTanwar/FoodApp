@@ -68,7 +68,7 @@ const HomeScreen = () => {
             <Categories  />
             <OfferSlider />
 
-            <Cardslider title={"Today's"} data={foodData}/>
+            <Cardslider title={"Today's Special"} data={foodData}/>
             <Cardslider title={"NonVeg Love"} data={nonVegData}/>
             <Cardslider title={"Veg Hunger"} data={vegData}/>
 
