@@ -7,7 +7,8 @@ import { TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { firebase } from '../../firebase'
+import { firebase } from 'C:\Users\Aviral Tanwar\Desktop\Codes\React_Nativ\FoodAppV3\firebase'
+
 
 const SignupScreen = ({navigation}) => {
     const [namefocus, setnamelfocus] = useState(false);
@@ -17,6 +18,62 @@ const SignupScreen = ({navigation}) => {
     const [showpassword, setshowpassword] = useState(false);
     const [showcpassword, setshowcpassword] = useState(false);
     const [cpasswordfocus, setcPasswordfocus] = useState(false);
+
+    //taking form data
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [cpassword, setcPassword] = useState('');
+    const [phone, setPhone] = useState('');
+    const [name, setName] = useState('');
+    const [address, setAddress] = useState('');
+
+    const[customError, setCustomError] = useState('');
+    const[successmsg, setSuccessmsg] = useState('');
+
+    const handleSignup = () => 
+    {
+            const FormData = {
+                email: email,
+                password: password,
+                // cpassword: cpassword,
+                phone: phone,
+                name: name
+                // address: address
+            }
+            if( password!= cpassword)
+            {
+                // alert("PASSWORD does not match!!!");
+                setCustomError("PASSWORD does not match!!!");
+                return;
+            }
+            else if(phone.length!= 10)
+            {
+                setCustomError("Phone Number should be at least 10 digits!!");
+                return;
+            }
+            else if(name.trim() == '')
+            {
+                setCustomError("Enter FULL NAME !!");
+                return;
+            }
+            try
+            {
+                firebase.auth().createUserWithEmailAndPassword(email,password).then(() => {
+                    console.log('User Creater')
+                    setSuccessmsg("USER created successfully!!!");
+                    const userRef = firebase.firestore().collection('UserData');
+                    userRef.add(FormData);
+
+                })
+                .catch((error) => {
+                    console.log('SignUp FIREBASE error ', error.message);
+                })
+            }
+            catch(error)
+            {
+                console.log('SignUp error SYSTEM Error', error.message);
+            }
+    }
 
     return (
     <ScrollView>
@@ -36,6 +93,7 @@ const SignupScreen = ({navigation}) => {
                     setshowpassword(false);
                     setcPasswordfocus(false);
                 }}
+                onChangeText={(text) => setName(text)}
             />
         </View>
         <View style={styles.inputout}>
@@ -52,6 +110,7 @@ const SignupScreen = ({navigation}) => {
                     setshowpassword(false);
                     setcPasswordfocus(false);
                 }}
+                onChangeText={(text) => setEmail(text)}
             />
         </View>
         <View style={styles.inputout}>
@@ -69,6 +128,7 @@ const SignupScreen = ({navigation}) => {
                     setshowpassword(false);
                     setcPasswordfocus(false);
                 }}
+                onChangeText={(text) => setPhone(text)}
             />
         </View>
         <View style={styles.inputout}>
@@ -85,6 +145,7 @@ const SignupScreen = ({navigation}) => {
                     setphonefocus(false);
                 }}
                 secureTextEntry={showpassword?false:true}
+                onChangeText={(text) => setPassword(text)}
             />
             <Feather 
                 name={showpassword?"eye":"eye-off"} 
@@ -107,6 +168,7 @@ const SignupScreen = ({navigation}) => {
                     setPasswordfocus(false)
                     setphonefocus(false);
                 }}
+                onChangeText={(text) => setcPassword(text)}
                 secureTextEntry={showcpassword?false:true}
             />
             <Feather 
@@ -116,7 +178,7 @@ const SignupScreen = ({navigation}) => {
                 onPress={()=>setshowcpassword(!showcpassword)}
             />
         </View>
-        <TouchableOpacity style={btn1}>
+        <TouchableOpacity style={btn1} onPress={ () => handleSignup()}>
             <Text 
                 style={{color: 'white', fontSize: 20, fontWeight: 'bold',}} onPress={() => {navigation.navigate('home')}}>    
                 Sign Up
