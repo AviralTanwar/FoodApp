@@ -7,6 +7,8 @@ import { TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+import { firebase } from '../../firebase'
+
 const SignupScreen = ({navigation}) => {
     const [namefocus, setnamelfocus] = useState(false);
     const [Emailfocus, setEmailfocus] = useState(false);
