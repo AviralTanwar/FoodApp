@@ -7,8 +7,10 @@ import { TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { firebase } from 'C:\Users\Aviral Tanwar\Desktop\Codes\React_Nativ\FoodAppV3\firebase'
+import { firebase } from '../../firebase'
 
+
+// import { firebase } from 'C:\Users\Aviral Tanwar\Desktop\Codes\React_Nativ\FoodAppV3\firebase'
 
 const SignupScreen = ({navigation}) => {
     const [namefocus, setnamelfocus] = useState(false);
