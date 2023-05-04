@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { titles, btn1, hr80 } from "../../global/style";
 import { StyleSheet, Text, View, TextInput, ScrollView } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
@@ -31,7 +31,9 @@ const SignupScreen = ({ navigation }) => {
   const [customError, setCustomError] = useState("");
   const [successmsg, setSuccessmsg] = useState("");
 
-  const auth = getAuth();
+  console.log(customError);
+
+  // const auth = getAuth();
 
   const handleSignup = () => {
     const FormData = {
@@ -42,15 +44,16 @@ const SignupScreen = ({ navigation }) => {
       name: name,
       // address: address
     };
-    if (password != cpassword) {
+    if(name === ""){
+      setCustomError("Enter the name !!");
+      return;
+    }
+    else if (password != cpassword) {
       // alert("PASSWORD does not match!!!");
       setCustomError("PASSWORD does not match!!!");
-      return;
+      return
     } else if (phone.length != 10) {
       setCustomError("Phone Number should be at least 10 digits!!");
-      return;
-    } else if (name.trim() == "") {
-      setCustomError("Enter FULL NAME !!");
       return;
     }
     try {
@@ -58,6 +61,7 @@ const SignupScreen = ({ navigation }) => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+          console.log(user);
           navigation.navigate("home");
           // ...
         })
