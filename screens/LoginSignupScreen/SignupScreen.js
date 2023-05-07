@@ -7,9 +7,10 @@ import { TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
 
-// import { firebase } from 'C:\Users\Aviral Tanwar\Desktop\Codes\React_Nativ\FoodAppV3\firebase'
+import { auth } from "../../firebase";
+import { db } from "../../firebase";
 
 const SignupScreen = ({ navigation }) => {
   const [namefocus, setnamelfocus] = useState(false);
@@ -35,7 +36,7 @@ const SignupScreen = ({ navigation }) => {
 
   // const auth = getAuth();
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     const FormData = {
       email: email,
       password: password,
@@ -44,25 +45,33 @@ const SignupScreen = ({ navigation }) => {
       name: name,
       // address: address
     };
-    if(name === ""){
+    if (name === "") {
       setCustomError("Enter the name !!");
       return;
-    }
-    else if (password != cpassword) {
+    } else if (password != cpassword) {
       // alert("PASSWORD does not match!!!");
       setCustomError("PASSWORD does not match!!!");
-      return
+      return;
     } else if (phone.length != 10) {
       setCustomError("Phone Number should be at least 10 digits!!");
       return;
     }
     try {
+      // navigation.navigate("add");
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+          userCredential.user.displayName = name;
+          userCredential.user.phoneNumber = phone;
+          setDoc(doc(db, "users", userCredential.user.uid), {
+            name,
+            email,
+            phone,
+          });
           console.log(user);
-          navigation.navigate("home");
+
+          navigation.navigate("add");
           // ...
         })
         .catch((error) => {
