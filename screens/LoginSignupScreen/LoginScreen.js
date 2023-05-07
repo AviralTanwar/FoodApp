@@ -44,6 +44,7 @@ const LoginScreen = ({ navigation }) => {
         <TextInput
           style={styles.input}
           placeholder="Email"
+          autoCapitalize="none"
           onFocus={() => {
             setEmailfocus(true);
             setPasswordfocus(false);

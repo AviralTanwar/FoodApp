@@ -118,6 +118,7 @@ const SignupScreen = ({ navigation }) => {
           <TextInput
             style={styles.input}
             placeholder="Email"
+            autoCapitalize="none"
             onFocus={() => {
               setnamelfocus(false);
               setEmailfocus(true);
