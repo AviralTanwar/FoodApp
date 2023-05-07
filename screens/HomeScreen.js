@@ -17,6 +17,7 @@ import { colors } from "../global/style";
 import { doc, onSnapshot, collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 
+
 const HomeScreen = ({ navigation }) => {
   const [foodData, setFoodData] = useState([]);
   const [vegData, setVegData] = useState([]);
@@ -46,7 +47,7 @@ const HomeScreen = ({ navigation }) => {
   console.log(search);
   return (
     <ScrollView style={styles.container}>
-      <StatusBar />
+      <StatusBar barStyle="dark-content" />
       <HomeHeadNav navigation={navigation} />
       <View style={styles.searchbox}>
         <AntDesign
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.col1,
     // alignItems: 'center',
     width: "100%",
-    paddingTop: 40,
+    // paddingTop: 40,
   },
   searchbox: {
     flexDirection: "row",

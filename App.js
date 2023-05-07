@@ -10,11 +10,13 @@ import SignupScreen from "./screens/LoginSignupScreen/SignupScreen";
 import AddressScreen from "./screens/LoginSignupScreen/AddressScreen";
 import UserProfile from "./screens/UserProfile";
 import ProductPage from "./screens/ProductPage";
+import {Platform} from 'react-native';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
-    <NavigationContainer>
+    <View style={styles.container}>
+    <NavigationContainer style={styles.container} >
       <Stack.Navigator initialRouteName="welcomepage">
         <Stack.Screen
           name="Welcomepage"
@@ -53,14 +55,15 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "000",
+    paddingTop: Platform.OS === 'ios'? 40:0,
   },
 });
