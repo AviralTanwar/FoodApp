@@ -13,7 +13,7 @@ const Cardslider = ({ title, data, navigation }) => {
 
   const openProductpage=(item) => {
     // console.log(item)
-    navigation.navigate('Productpage', item )
+    navigation.navigate('product', item )
   }
   //   console.log(title);
   return (
