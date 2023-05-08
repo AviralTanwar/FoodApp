@@ -11,6 +11,7 @@ import AddressScreen from "./screens/LoginSignupScreen/AddressScreen";
 import UserProfile from "./screens/UserProfile";
 import ProductPage from "./screens/ProductPage";
 import {Platform} from 'react-native';
+import Cart from "./screens/Cart";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -51,6 +52,11 @@ export default function App() {
         <Stack.Screen
           name="product"
           component={ProductPage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="cart"
+          component={Cart}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
