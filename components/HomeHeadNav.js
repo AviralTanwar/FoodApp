@@ -8,12 +8,14 @@ import { colors } from "../global/style";
 const HomeHeadNav = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Fontisto
-        name="nav-icon-list"
-        size={20}
-        color="black"
-        style={styles.myicon}
-      />
+      <TouchableOpacity onPress={() => {navigation.navigate("cart")}}>
+        <Fontisto
+          name="nav-icon-list"
+          size={20}
+          color="black"
+          style={styles.myicon}
+        />
+      </TouchableOpacity>
       <View style={styles.containerin}>
         <Text style={styles.mytext}> FIT_FOODIE</Text>
         <Ionicons
