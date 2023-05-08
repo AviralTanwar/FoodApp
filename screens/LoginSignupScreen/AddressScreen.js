@@ -20,14 +20,35 @@ import { db } from "../../firebase";
 import { auth } from "../../firebase";
 
 const data = [
-  { label: "ANDHRA PRADESH", value: "1" },
-  { label: "ARUNACHAL PRADESH", value: "2" },
-  { label: "Item 3", value: "3" },
-  { label: "Item 4", value: "4" },
-  { label: "Item 5", value: "5" },
-  { label: "Item 6", value: "6" },
-  { label: "Item 7", value: "7" },
-  { label: "Item 8", value: "8" },
+  { label: "ANDHRA PRADESH", value: "ANDHRA PRADESH" },
+  { label: "ARUNACHAL PRADESH", value: "ARUNACHAL PRADESH" },
+  { label: "Assam", value: "Assam" },
+  { label: "Bihar", value: "Bihar" },
+  { label: "Chhattisgarh", value: "Chhattisgarh" },
+  { label: "Goa", value: "Goa" },
+  { label: "Gujarat", value: "Gujarat" },
+  { label: "Haryana", value: "Haryana" },
+  { label: "Himachal Pradesh", value: "Himachal Pradesh" },
+  { label: "Jharkhand", value: "Jharkhand" },
+  { label: "Karnataka", value: "Karnataka" },
+  { label: "Kerala", value: "Kerala" },
+  { label: "Madhya Pradesh", value: "Madhya Pradesh" },
+  { label: "Maharashtra", value: "Maharashtra" },
+  { label: "Manipur", value: "Manipur" },
+  { label: "Meghalaya", value: "Meghalaya" },
+  { label: "Mizoram", value: "Mizoram" },
+  { label: "Nagaland", value: "Nagaland" },
+  { label: "Odisha", value: "Odisha" },
+  { label: "Punjab", value: "Punjab" },
+  { label: "Rajasthan", value: "Rajasthan" },
+  { label: "Sikkim", value: "Sikkim" },
+  { label: "Tamil Nadu", value: "Tamil Nadu" },
+  { label: "Telangana", value: "Telangana" },
+  { label: "Tripura", value: "Tripura" },
+  { label: "Uttar Pradesh", value: "Uttar Pradesh" },
+  { label: "Uttarakhand", value: "Uttarakhand" },
+  { label: "West Bengal", value: "West Bengal" },
+  
 ];
 
 const AddressScreen = ({ navigation }) => {
