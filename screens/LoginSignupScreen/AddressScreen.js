@@ -243,20 +243,20 @@ const AddressScreen = ({ navigation }) => {
           />
         </View>
 
-        {/* <Text style={styles.or}> Or</Text>
+        <Text style={styles.or}> Or</Text>
         <View style={hr80}></View>
         <Text>
           Mark it on a map?
           <Text
             style={styles.signup}
             onPress={() => {
-              navigation.navigate("Signup");
+              navigation.navigate("mapScreen");
             }}
           >
             {" "}
             Use Maps
           </Text>
-        </Text> */}
+        </Text>
         <TouchableOpacity
           style={{ ...btn1, marginTop: 20 }}
           onPress={() => handleSubmit()}

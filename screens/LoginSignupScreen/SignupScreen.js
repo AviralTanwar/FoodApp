@@ -56,11 +56,12 @@ const SignupScreen = ({ navigation }) => {
       setCustomError("Phone Number should be at least 10 digits!!");
       return;
     }
+    console.log(name,email,password,phone)
     try {
-      // navigation.navigate("add");
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in
+          console.log("entered")
           const user = userCredential.user;
           userCredential.user.displayName = name;
           userCredential.user.phoneNumber = phone;
@@ -69,7 +70,11 @@ const SignupScreen = ({ navigation }) => {
             email,
             phone,
           });
-          console.log(user);
+          setDoc(doc(db, "userCart", userCredential.user.uid), {
+            name,
+            email,
+            cart: [],
+          })
 
           navigation.navigate("add");
           // ...
@@ -77,6 +82,7 @@ const SignupScreen = ({ navigation }) => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          console.log(errorCode, errorMessage )
           // ..
         });
     } catch (error) {

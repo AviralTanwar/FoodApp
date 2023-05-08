@@ -12,6 +12,8 @@ import UserProfile from "./screens/UserProfile";
 import ProductPage from "./screens/ProductPage";
 import {Platform} from 'react-native';
 import Cart from "./screens/Cart";
+import PlaceOrder from "./screens/PlaceOrder";
+import MapScreen from "./screens/LoginSignupScreen/MapScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -57,6 +59,16 @@ export default function App() {
         <Stack.Screen
           name="cart"
           component={Cart}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="placedOrder"
+          component={PlaceOrder}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="mapScreen"
+          component={MapScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

@@ -1,17 +1,21 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Ionicons } from '@expo/vector-icons';
 
-const Card = () => {
+const Card = ({data}) => {
+
+    console.log(data);
+    let quantity = Number(data.foodQuantity);
+    let price = Number(data.data.foodPrice);
   return (
       <TouchableOpacity>
         <View style={styles.card}>
-            <Image style={styles.img}/>
+            <Image style={styles.img} source={{uri: data.data.foodImageUrl}}/>
             <View style={styles.cardContainer}>
-                <Text style={styles.cardTitle}>Krishna's Special Butter Chicken</Text>
+                <Text style={styles.cardTitle}>{data.data.foodName}</Text>
                 <View style={{marginTop: 20, flexDirection: "row", justifyContent: "space-between"}}>
-                    <Text style={{fontSize: 12, color: "#777"}}>Quantity: 2 </Text>
-                    <Text style={{fontSize: 12, color: "#000", fontWeight: 500, marginRight: 20}}>Total: ₹400</Text>
+                    <Text style={{fontSize: 12, color: "#777"}}>Quantity: {data.foodQuantity} </Text>
+                    <Text style={{fontSize: 12, color: "#000", fontWeight: 500, marginRight: 20}}>Total: {quantity*price}</Text>
                 </View>
             </View>
         </View>
@@ -39,7 +43,6 @@ const styles = StyleSheet.create({
     img: {
         width: 100,
         height: 100,
-        backgroundColor: "red",
     },
     cardContainer: {
         flexGrow: 1,

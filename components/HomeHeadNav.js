@@ -3,18 +3,14 @@ import React from "react";
 import { Fontisto, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
+import { Entypo } from '@expo/vector-icons';
 import { colors } from "../global/style";
 
 const HomeHeadNav = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => {navigation.navigate("cart")}}>
-        <Fontisto
-          name="nav-icon-list"
-          size={20}
-          color="black"
-          style={styles.myicon}
-        />
+      <Entypo name="shopping-cart" size={24} color="black" />
       </TouchableOpacity>
       <View style={styles.containerin}>
         <Text style={styles.mytext}> FIT_FOODIE</Text>

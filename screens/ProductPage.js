@@ -4,23 +4,31 @@ import { AntDesign } from "@expo/vector-icons";
 import style, { navbtn, navbtnout,colors,veg,nonveg,btn2,hr80,incdecbtn,incdecinput,indecout} from '../global/style';
 import { TouchableOpacity } from "react-native";
 import axios from "axios";
+import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore"; 
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../firebase";
+import { db } from "../firebase";
+
 
 const ProductPage = ({navigation,route}) => {
 
   const [calories,setCalories] = useState();
+  const [user,setUser] = useState();
 
   const data=route.params;
   if(route.params === undefined){
     navigation.navigate('home')
   }
-
   const [quantity,setQuantity]=useState('1');
   const [addonquantity,setAddonquantity]=useState('0');
-  const addtocart=()=>{
-    // console.log('add to cart')
-    const data1= {data,addonquantity : addonquantity,Foodquantity:quantity}
-    console.log('data1',data1)
 
+  const addtocart = async()=>{
+    console.log(user);
+    const data1= {data,addonQuantity : addonquantity,foodQuantity:quantity}
+    const cartRef = doc(db, "userCart", user);
+    await updateDoc(cartRef, {
+      cart: arrayUnion(data1)
+    })
   }
 
   const increaseQuantity=()=>{
@@ -43,6 +51,21 @@ const ProductPage = ({navigation,route}) => {
     }
   }
 
+  const getUser = async () => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUser(user.uid);
+        // const docRef = doc(db, "users", user.uid);
+        // const docSnap = await getDoc(docRef);
+        // if (docSnap.exists()) {
+        //   setUser(docSnap.data());
+        // }
+      } else {
+        console.log("user not found");
+      }
+    });
+  };
+
   const getCalories = async() => {
     const options = {
       method: 'GET',
@@ -64,19 +87,9 @@ const ProductPage = ({navigation,route}) => {
 
 
   useEffect(() => {
-
-    // axios({
-    //   method: 'GET',
-    //   url: 'https://edamam-recipe-search.p.rapidapi.com/search',
-    //   params: {q: 'chicken'},
-    //   headers: {
-    //     'X-RapidAPI-Key': '6d171c145amsh2d2a140928a8068p1c6e91jsn7ddef21437a4',
-    //     'X-RapidAPI-Host': 'edamam-recipe-search.p.rapidapi.com'
-    //   }
-    // }).then(response => {
-    //   console.log(response.data);
-    // })
+    getUser();
     getCalories();
+
   },[])
 
 
