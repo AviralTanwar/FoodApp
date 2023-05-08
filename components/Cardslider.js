@@ -10,6 +10,11 @@ import React from "react";
 import { colors, veg, nonveg } from "../global/style";
 
 const Cardslider = ({ title, data, navigation }) => {
+
+  const openProductpage=(item) => {
+    // console.log(item)
+    navigation.navigate('product', item )
+  }
   //   console.log(title);
   return (
     <View style={styles.container}>
@@ -21,6 +26,10 @@ const Cardslider = ({ title, data, navigation }) => {
         showsHorizontalScrollIndicator={false}
         data={data}
         renderItem={({ item }) => (
+          <TouchableOpacity key={item.index} onPress={() =>{
+            openProductpage(item);
+          }}>
+
           <View style={styles.card}>
             <View style={styles.s1}>
               <Image
@@ -50,6 +59,7 @@ const Cardslider = ({ title, data, navigation }) => {
               <Text style={styles.buybtn}>Buy</Text>
             </TouchableOpacity>
           </View>
+          </TouchableOpacity>
         )}
       />
     </View>

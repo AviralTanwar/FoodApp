@@ -10,7 +10,17 @@ module.exports = {
     btntxt: 20,
   },
   btn1: {
-    width: "80%",
+    width: 150,
+    height: 50,
+    backgroundColor: "#0ac1d1",
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 10,
+    color: "white",
+  },
+  btn2: {
+    width: 150,
     height: 50,
     backgroundColor: "#0ac1d1",
     borderRadius: 10,
@@ -37,5 +47,34 @@ module.exports = {
     width: 20,
     height: 20,
     borderRadius: 5,
+  },
+
+  incdecbtn:{
+    backgroundColor:'red',
+    alignItems:'center',
+    justifyContent:'center',
+    borderRadius:50,
+    elevation:10,
+    padding:10,
+    color:'white',
+    fontSize:20,
+    fontWeight:'bold',
+  },
+
+  indecinput:{
+    backgroundColor:'white',
+    alignItems:'center',
+    justifyContent:'center',
+    elevation:10,
+    padding:10,
+    width:50,
+    marginHorizontal:10,
+    fontSize:20,
+  },
+  
+  indecout:{
+    flexDirection:'row',
+    alignItems:'center',
+    margin:10,
   },
 };
